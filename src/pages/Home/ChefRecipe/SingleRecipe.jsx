@@ -2,7 +2,7 @@ import React from "react";
 
 const SingleRecipe = ({ recipe }) => {
   const { cooking_method, rating, recipeName, ingredients } = recipe;
-  console.log(cooking_method)
+
 
   return (
     <div className="card w-9/12  bg-gray-600 text-primary-content mx-auto about">

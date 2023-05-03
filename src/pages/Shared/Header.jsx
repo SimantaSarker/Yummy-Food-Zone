@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="navbar  text-2xl  text-black font-semibold bg-white z-10 sticky top-0">
       <div className="navbar-start">
@@ -33,12 +36,6 @@ const Header = () => {
             <li>
               <Link to="/blog">Blog</Link>
             </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-2xl">Yummy Food Zone</a>
@@ -52,21 +49,23 @@ const Header = () => {
           <li>
             <Link to="/blog">Blog</Link>
           </li>
-          <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" />
-          </div>
-        </label>
-      </div>
+      {user ? (
+        <div className="navbar-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" />
+            </div>
+          </label>
+        </div>
+      ) : (
+        <div className="navbar-end">
+        <Link to="/login">
+          <button className="btn btn-secondary">Login</button>
+        </Link>
+        </div>
+      )}
     </div>
   );
 };

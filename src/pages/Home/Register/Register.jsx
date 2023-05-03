@@ -1,21 +1,37 @@
-import React from "react";
-import { Link, parsePath } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [success,setSuccess]=useState("")
 
-  
-  
-
-  const handleRegister=(event)=>{
+  const handleRegister = (event) => {
+    setError("");
+    setSuccess("")
     event.preventDefault();
-    const form=event.target;
-    const name=form.name.value;
-    const email=form.email.value;
-    const photo=form.photo.value;
-    const password=form.password.value;
-    console.log(name,email,photo,password)
-  }
-
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    if (email && password) {
+      createUser(email, password)
+        .then((result) => {
+          const loggedUser = result.user;
+          console.log(loggedUser)
+          form.reset();
+          setSuccess("Successfully Register")
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    }
+    else{
+      setError('Please add email,Password')
+    }
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -34,7 +50,7 @@ const Register = () => {
                 name="name"
                 placeholder="name"
                 className="input input-bordered"
-                required
+                
               />
             </div>
             <div className="form-control">
@@ -46,7 +62,7 @@ const Register = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
-                required
+               
               />
             </div>
 
@@ -59,7 +75,7 @@ const Register = () => {
                 name="photo"
                 placeholder="Enter Photo Url"
                 className="input input-bordered"
-                required
+                
               />
             </div>
             <div className="form-control">
@@ -71,17 +87,32 @@ const Register = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
+              
               />
+
+              {error && (
+                <div className="alert mt-3 alert-error shadow-lg">
+                  <div>
+                    <span>Error! {error}</span>
+                  </div>
+                </div>
+              )}
+
+
+               {
+                success && <div className="alert alert-success shadow-lg">
+                <div>
+                  <span>{success}</span>
+                </div>
+              </div>
+               }
+
               <label className="label">
                 <Link to="/login" className="label-text-alt link link-hover">
                   Already Have An account?Login
                 </Link>
               </label>
             </div>
-
-
-
 
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>
