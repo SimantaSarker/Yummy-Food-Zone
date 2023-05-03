@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 
 const Login = () => {
@@ -7,6 +7,8 @@ const Login = () => {
   const [error, setError] = useState("");
   const [success,setSuccess]=useState("");
   const navigate=useNavigate();
+  const location=useLocation();
+  const from=location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     setError("");
@@ -21,7 +23,7 @@ const Login = () => {
         form.reset();
         setSuccess("You are a Valid user");
         console.log(loggedUser)
-        navigate('/');
+        navigate(from);
       })
       .catch((error) => {
         setError(error.message);

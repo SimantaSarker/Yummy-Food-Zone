@@ -50,6 +50,7 @@ const Register = () => {
     updateProfileAndPhoto(user, name, photo)
       .then(() => {
         console.log("successfully update");
+        
       })
       .catch((error) => {
         setError(error.message);
@@ -74,6 +75,7 @@ const Register = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const loggedUser=result.user;
+        navigate("/");
       })
       .catch((error) => {
         setError(error.message)
