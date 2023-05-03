@@ -8,10 +8,12 @@ import ChefRecipe from "../pages/Home/ChefRecipe/ChefRecipe";
 import Register from "../pages/Home/Register/Register";
 import Login from "../pages/Home/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
+import ErrorPage from "../pages/Home/ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -28,20 +30,26 @@ const router = createBrowserRouter([
       {
         path:'/login',
         element:<Login></Login>
-      }
-    ],
-  },
- 
-  {
-    path: "chefRecipe",
-    element: <ChefRecipeLayout></ChefRecipeLayout>,
-    children: [
+      },
       {
-        path: ":id",
+        path: "/chefRecipe/:id",
         element: <PrivateRoutes><ChefRecipe></ChefRecipe></PrivateRoutes>,
         loader:({params})=>fetch(`https://assignment-10-server-simantasarker.vercel.app/chefs/${params.id}`)
       },
     ],
   },
+ 
+  // {
+  //   path: "chefRecipe",
+  //   element: <ChefRecipeLayout></ChefRecipeLayout>,
+  //   errorElement:<ErrorPage></ErrorPage>,
+  //   children: [
+  //     {
+  //       path: ":id",
+  //       element: <PrivateRoutes><ChefRecipe></ChefRecipe></PrivateRoutes>,
+  //       loader:({params})=>fetch(`https://assignment-10-server-simantasarker.vercel.app/chefs/${params.id}`)
+  //     },
+  //   ],
+  // },
 ]);
 export default router;
