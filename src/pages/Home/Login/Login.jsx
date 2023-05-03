@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [success,setSuccess]=useState("")
+  const [success,setSuccess]=useState("");
+  const navigate=useNavigate();
 
   const handleLogin = (event) => {
     setError("");
@@ -18,7 +19,9 @@ const Login = () => {
         const loggedUser = result.user;
         console.log("success");
         form.reset();
-        setSuccess("You are a Valid user")
+        setSuccess("You are a Valid user");
+        console.log(loggedUser)
+        navigate('/');
       })
       .catch((error) => {
         setError(error.message);

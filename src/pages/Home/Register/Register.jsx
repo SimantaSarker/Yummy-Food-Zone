@@ -1,15 +1,28 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+} from "firebase/auth";
 import { AuthContext } from "../../../providers/AuthProviders";
+import app from "../../../firebase/firebase.config";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateProfileAndPhoto } = useContext(AuthContext);
+  // console.log(updateProfileAndPhoto)
   const [error, setError] = useState("");
-  const [success,setSuccess]=useState("")
+  const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  const auth = getAuth(app);
 
   const handleRegister = (event) => {
     setError("");
-    setSuccess("")
+    setSuccess("");
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -20,17 +33,51 @@ const Register = () => {
       createUser(email, password)
         .then((result) => {
           const loggedUser = result.user;
-          console.log(loggedUser)
           form.reset();
-          setSuccess("Successfully Register")
+          setSuccess("Successfully Register");
+          updateUserData(loggedUser, name, photo);
+          navigate("/");
         })
         .catch((error) => {
           setError(error.message);
         });
+    } else {
+      setError("Please add email,Password");
     }
-    else{
-      setError('Please add email,Password')
-    }
+  };
+
+  const updateUserData = (user, name, photo) => {
+    updateProfileAndPhoto(user, name, photo)
+      .then(() => {
+        console.log("successfully update");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  // --------------------Register using Google-----
+  const handleGoogleLogIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  // ---------------handle github login part------------
+
+  const handleGithubLogIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const loggedUser=result.user;
+      })
+      .catch((error) => {
+        setError(error.message)
+      });
   };
 
   return (
@@ -50,7 +97,6 @@ const Register = () => {
                 name="name"
                 placeholder="name"
                 className="input input-bordered"
-                
               />
             </div>
             <div className="form-control">
@@ -62,7 +108,6 @@ const Register = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
-               
               />
             </div>
 
@@ -75,7 +120,6 @@ const Register = () => {
                 name="photo"
                 placeholder="Enter Photo Url"
                 className="input input-bordered"
-                
               />
             </div>
             <div className="form-control">
@@ -87,7 +131,6 @@ const Register = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
-              
               />
 
               {error && (
@@ -98,14 +141,13 @@ const Register = () => {
                 </div>
               )}
 
-
-               {
-                success && <div className="alert alert-success shadow-lg">
-                <div>
-                  <span>{success}</span>
+              {success && (
+                <div className="alert alert-success shadow-lg">
+                  <div>
+                    <span>{success}</span>
+                  </div>
                 </div>
-              </div>
-               }
+              )}
 
               <label className="label">
                 <Link to="/login" className="label-text-alt link link-hover">
@@ -119,16 +161,18 @@ const Register = () => {
             </div>
           </form>
 
-          <div className="">
+          <div>
             <img
               src="https://i.ibb.co/gSTHXZJ/google-btn.png"
               alt=""
-              className="object-cover w-[70%] mx-auto "
+              className="object-cover w-[70%] mx-auto"
+              onClick={handleGoogleLogIn}
             />
             <img
               src="https://i.ibb.co/g9f4P0S/github-btn.png"
               alt=""
               className="object-cover w-[70%] mx-auto mt-3 mb-4"
+              onClick={handleGithubLogIn}
             />
           </div>
         </div>

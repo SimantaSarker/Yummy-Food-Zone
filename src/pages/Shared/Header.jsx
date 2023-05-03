@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {});
+  };
 
   return (
     <div className="navbar  text-2xl  text-black font-semibold bg-white z-10 sticky top-0">
@@ -53,17 +59,24 @@ const Header = () => {
       </div>
       {user ? (
         <div className="navbar-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" />
+          <label tabIndex={0} className=" btn-circle avatar">
+            <div className="w-10 rounded-full" title={user?.displayName}>
+             
+                <img src={user?.photoURL} className="object-cover" />
+              
             </div>
           </label>
+          <div>
+            <button className="btn btn-info" onClick={handleLogOut}>
+              LogOut
+            </button>
+          </div>
         </div>
       ) : (
         <div className="navbar-end">
-        <Link to="/login">
-          <button className="btn btn-secondary">Login</button>
-        </Link>
+          <Link to="/login">
+            <button className="btn btn-secondary">Login</button>
+          </Link>
         </div>
       )}
     </div>

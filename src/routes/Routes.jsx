@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: ":id",
         element: <ChefRecipe></ChefRecipe>,
-        loader:({params})=>fetch(`http://localhost:4000/chefs/${params.id}`)
+        loader:({params})=>fetch(`https://assignment-10-server-simantasarker.vercel.app/chefs/${params.id}`)
       },
     ],
   },

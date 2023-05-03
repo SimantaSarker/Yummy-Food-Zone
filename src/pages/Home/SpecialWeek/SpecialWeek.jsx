@@ -3,7 +3,7 @@ import './Special.css'
 const SpecialWeek = () => {
   const [specialData, setAllSpecialData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/special")
+    fetch("https://assignment-10-server-simantasarker.vercel.app/special")
       .then((res) => res.json())
       .then((data) => setAllSpecialData(data));
   }, []);
