@@ -7,6 +7,7 @@ import ChefRecipeLayout from "../layouts/ChefRecipeLayout";
 import ChefRecipe from "../pages/Home/ChefRecipe/ChefRecipe";
 import Register from "../pages/Home/Register/Register";
 import Login from "../pages/Home/Login/Login";
+import PrivateRoutes from "./PrivateRoutes";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <ChefRecipe></ChefRecipe>,
+        element: <PrivateRoutes><ChefRecipe></ChefRecipe></PrivateRoutes>,
         loader:({params})=>fetch(`https://assignment-10-server-simantasarker.vercel.app/chefs/${params.id}`)
       },
     ],
