@@ -6,6 +6,8 @@ import {
   getAuth,
   signInWithPopup,
 } from "firebase/auth";
+import gitBtn from '../../../../public/github-btn.png'
+import googleBtn from '../../../../public/google-btn.png'
 import { AuthContext } from "../../../providers/AuthProviders";
 import app from "../../../firebase/firebase.config";
 
@@ -165,13 +167,13 @@ const Register = () => {
 
           <div>
             <img
-              src="https://i.ibb.co/gSTHXZJ/google-btn.png"
+              src={googleBtn}
               alt=""
               className="object-cover w-[70%] mx-auto"
               onClick={handleGoogleLogIn}
             />
             <img
-              src="https://i.ibb.co/g9f4P0S/github-btn.png"
+              src={gitBtn}
               alt=""
               className="object-cover w-[70%] mx-auto mt-3 mb-4"
               onClick={handleGithubLogIn}
