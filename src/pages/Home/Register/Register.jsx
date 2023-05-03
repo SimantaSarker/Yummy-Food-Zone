@@ -13,7 +13,6 @@ import app from "../../../firebase/firebase.config";
 
 const Register = () => {
   const { createUser, updateProfileAndPhoto } = useContext(AuthContext);
-  // console.log(updateProfileAndPhoto)
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -67,7 +66,6 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error.message);
       });
   };
 
