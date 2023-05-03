@@ -29,7 +29,7 @@ const ChefCard = ({ chef }) => {
             Experience: {yearsOfExperience}
           </div>
           <div className="text-start mt-4 ">
-            <Link to={`chefRecipe/${chefId}`}>
+            <Link to={`/chefRecipe/${chefId}`}>
               <button className="btn btn-outline btn-primary  ">
                 View Recipes
               </button>

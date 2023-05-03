@@ -1,8 +1,14 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 const SingleRecipe = ({ recipe }) => {
-  const { cooking_method, rating, recipeName, ingredients } = recipe;
+  const { cooking_method, rating, recipeName, ingredients,recipe_id } = recipe;
 
+
+  const handleFavorite=(id)=>{
+    toast("Added to your favorite")
+
+  }
 
   return (
     <div className="card w-9/12  bg-gray-600 text-primary-content mx-auto about">
@@ -27,7 +33,7 @@ const SingleRecipe = ({ recipe }) => {
           </div>
         </div>
         <div className="card-actions justify-end">
-          <button className="btn btn-success">Favorite</button>
+          <button className="btn btn-success" onClick={()=>handleFavorite(recipe_id)}>Favorite</button>
         </div>
       </div>
     </div>

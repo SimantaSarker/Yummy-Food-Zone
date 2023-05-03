@@ -3,6 +3,9 @@ import { useLoaderData, useParams } from "react-router-dom";
 import banner from "../../../../public/burger.jpg";
 import SingleRecipe from "./SingleRecipe";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const ChefRecipe = () => {
   const chefRecipes = useLoaderData();
   const { id } = useParams();
@@ -60,6 +63,7 @@ const ChefRecipe = () => {
           <SingleRecipe recipe={recipe} key={recipe.recipe_id}></SingleRecipe>
         ))}
       </div>
+      <ToastContainer></ToastContainer>
     </>
   );
 };
