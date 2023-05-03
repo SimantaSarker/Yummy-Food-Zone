@@ -2,6 +2,8 @@ import React from "react";
 import { Link, parsePath } from "react-router-dom";
 
 const Register = () => {
+
+  
   
 
   const handleRegister=(event)=>{
