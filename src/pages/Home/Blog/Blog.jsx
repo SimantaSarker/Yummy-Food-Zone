@@ -20,7 +20,7 @@ const Blog = () => {
             state management system of the program to control their state.{" "}
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">See More</button>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ const Blog = () => {
             data type.
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">See More</button>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ const Blog = () => {
             for developing web apps.
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">See More</button>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@ const Blog = () => {
           <p>A custom hook in React is a reusable function that has shared stateful logic and may be applied to several components. The prefix "use" is used in the naming standard for custom hooks to signify that they use the internal hooks of React.
 Custom hooks can simplify reuse of complex functionality across other components by abstracting it away. Your code will become more modular and easier to maintain as a result of their assistance in minimizing code duplication.For instance, you might develop a unique hook to manage an API call that retrieves information from a distant server. Functions for handling loading and error conditions, retrying unsuccessful requests, and caching responses to enhance efficiency might all be included in this hook.</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">See More</button>
           </div>
         </div>
       </div>

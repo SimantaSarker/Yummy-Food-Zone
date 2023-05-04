@@ -1,19 +1,24 @@
 import React from "react";
+import Marquee from "react-fast-marquee";
 import "./Banner.css";
 const Banner = () => {
+  
   return (
-    <div className="flex items-center justify-center  banner  bg-gray-50 text-center">
-      <div className=" w-full flex items-center flex-wrap">
-        <div className="w-1/2 h-56 flex items-center">
-          <h1 className="text-white font-semibold text-3xl  ms-10">
-            <span className="text-5xl text-cyan-200 cursor-pointer hover:text-purple-700  ">Welcome To Yummy Food Zone</span> 
+    <div className="flex items-center justify-center  banner text-center">
+      <div className="flex items-center flex-col w-full">
+        <div className=" h-56 flex w-full">
          
-             <p className="mt-3">Find Your Best Food with Reasonable Rrice</p>
+          <Marquee speed={50} direction="right" pauseOnHover="true">
+          <h1 className=" font-semibold text-purple-950 ">
+            <span className="cursor-pointer text-5xl ">Welcome To Yummy Food Zone</span> 
+             <p className=" text-2xl mt-6 ">Find Your Best Food with Reasonable Rrice</p>
           </h1>
+
+        </Marquee>
       
         </div>
-        <div className="w-1/2 ">
-        <button className="bg-white  btn btn-outline btn-primary border-none">See Chef</button>
+        <div className=" ">
+        <button className=" btn btn-secondary border-none w-full">See Chef</button>
         </div>
       </div>
     </div>

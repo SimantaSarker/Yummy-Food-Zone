@@ -39,17 +39,5 @@ const router = createBrowserRouter([
     ],
   },
  
-  // {
-  //   path: "chefRecipe",
-  //   element: <ChefRecipeLayout></ChefRecipeLayout>,
-  //   errorElement:<ErrorPage></ErrorPage>,
-  //   children: [
-  //     {
-  //       path: ":id",
-  //       element: <PrivateRoutes><ChefRecipe></ChefRecipe></PrivateRoutes>,
-  //       loader:({params})=>fetch(`https://assignment-10-server-simantasarker.vercel.app/chefs/${params.id}`)
-  //     },
-  //   ],
-  // },
 ]);
 export default router;
