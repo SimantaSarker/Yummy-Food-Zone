@@ -34,6 +34,8 @@ const Register = () => {
       createUser(email, password)
         .then((result) => {
           const loggedUser = result.user;
+          loggedUser.displayName=name;
+          loggedUser.photoURL=photo;
           form.reset();
           setSuccess("Successfully Register");
           updateUserData(loggedUser, name, photo);
