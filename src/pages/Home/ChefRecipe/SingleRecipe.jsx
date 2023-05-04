@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const SingleRecipe = ({ recipe }) => {
   const { cooking_method, rating, recipeName, ingredients,recipe_id } = recipe;
+  const [isDisabled,setDisabled]=useState(false)
 
 
   const handleFavorite=(id)=>{
-    toast("Added to your favorite")
+    toast("Added to your favorite");
+    setDisabled(true)
 
   }
 
@@ -32,8 +34,8 @@ const SingleRecipe = ({ recipe }) => {
             <p>Ratings: {rating}</p>
           </div>
         </div>
-        <div className="card-actions justify-end">
-          <button className="btn btn-success" onClick={()=>handleFavorite(recipe_id)}>Favorite</button>
+        <div className="card-actions justify-end ">
+          <button className="btn btn-success " disabled={isDisabled} onClick={()=>handleFavorite(recipe_id)}>Favorite</button>
         </div>
       </div>
     </div>
