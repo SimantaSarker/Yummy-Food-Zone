@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut} = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
@@ -59,10 +59,11 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      {user ? (
+      {user ?  (
         <div className="navbar-end">
           <label tabIndex={0} className=" btn-circle avatar">
             <div className="w-10 rounded-full" title={user?.displayName}>
+
               <img src={user?.photoURL} className="object-cover" />
             </div>
           </label>

@@ -6,8 +6,8 @@ import {
   getAuth,
   signInWithPopup,
 } from "firebase/auth";
-import gitBtn from '../../../../public/github-btn.png'
-import googleBtn from '../../../../public/google-btn.png'
+import gitBtn from "../../../../public/github-btn.png";
+import googleBtn from "../../../../public/google-btn.png";
 import { AuthContext } from "../../../providers/AuthProviders";
 import app from "../../../firebase/firebase.config";
 
@@ -30,22 +30,33 @@ const Register = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    if (email && password) {
+
+    if (password.length < 6) {
+      setError("Provide Password with six characters");
+      return;
+    } else if (!/(?=.*[!@#$%^&*])/.test(password)) {
+      setError("add at least one special character");
+      return;
+    }
+
+
+    if (email) {
       createUser(email, password)
         .then((result) => {
           const loggedUser = result.user;
-          loggedUser.displayName=name;
-          loggedUser.photoURL=photo;
+          loggedUser.displayName = name;
+          loggedUser.photoURL = photo;
           form.reset();
           setSuccess("Successfully Register");
           updateUserData(loggedUser, name, photo);
           navigate("/");
         })
         .catch((error) => {
-          setError(error.message);
+          console.log(error.message);
         });
-    } else {
-      setError("Please add email,Password");
+    }
+    else{
+      setError("Provide email please")
     }
   };
 
@@ -53,7 +64,6 @@ const Register = () => {
     updateProfileAndPhoto(user, name, photo)
       .then(() => {
         console.log("successfully update");
-        
       })
       .catch((error) => {
         setError(error.message);
@@ -67,8 +77,7 @@ const Register = () => {
         const loggedUser = result.user;
         navigate("/");
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
   // ---------------handle github login part------------
@@ -76,11 +85,11 @@ const Register = () => {
   const handleGithubLogIn = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
-        const loggedUser=result.user;
+        const loggedUser = result.user;
         navigate("/");
       })
       .catch((error) => {
-        setError(error.message)
+        setError(error.message);
       });
   };
 
@@ -101,16 +110,18 @@ const Register = () => {
                 name="name"
                 placeholder="name"
                 className="input input-bordered"
+                required
+              
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Password</span>
               </label>
               <input
-                type="email"
-                name="email"
-                placeholder="email"
+                type="password"
+                name="password"
+                placeholder="password"
                 className="input input-bordered"
               />
             </div>
@@ -122,18 +133,19 @@ const Register = () => {
               <input
                 type="text"
                 name="photo"
+           
                 placeholder="Enter Photo Url"
                 className="input input-bordered"
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text">Email</span>
               </label>
               <input
-                type="password"
-                name="password"
-                placeholder="password"
+                type="email"
+                name="email"
+                placeholder="email"
                 className="input input-bordered"
               />
 
