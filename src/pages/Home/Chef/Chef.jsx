@@ -12,7 +12,6 @@ const Chef = () => {
     const allChef=async ()=>{
       const res=await fetch(`https://assignment-10-server-simantasarker.vercel.app/chefs`);
       const chefs=await res.json();
-      console.log(chefs)
       setChefs(chefs)
     }
     allChef();
