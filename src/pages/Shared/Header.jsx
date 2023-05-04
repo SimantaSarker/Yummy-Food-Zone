@@ -4,9 +4,12 @@ import { AuthContext } from "../../providers/AuthProviders";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        console.log("successfully log out");
+      })
       .catch((error) => {});
   };
 
@@ -60,9 +63,7 @@ const Header = () => {
         <div className="navbar-end">
           <label tabIndex={0} className=" btn-circle avatar">
             <div className="w-10 rounded-full" title={user?.displayName}>
-             
-                <img src={user?.photoURL} className="object-cover" />
-              
+              <img src={user?.photoURL} className="object-cover" />
             </div>
           </label>
           <div>
