@@ -7,4 +7,4 @@
 - after logged in you can now show in any chef details . here you can see chef name ,image ,recipes with ingredients with ratings. Also a favorite button.After clicked favorite  button that recipe will be added to you favorite recipe with a toast message
 - In Blog section you can see four blog with four questions with answers.
 - And last one is about us .We try to write something about our chef experience with their best work and best recipe.
-Live Wepsite :https://assignment-10-yummy-food.web.app/
+Live Wepsite: https://assignment-10-yummy-food.web.app/
