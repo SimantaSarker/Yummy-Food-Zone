@@ -3,9 +3,10 @@ import React,{Suspense,lazy} from 'react';
 import './Home.css'
 import Banner from '../Banner/Banner';
 import AboutUs from '../AboutUs/AboutUs';
-// import Chef from '../Chef/Chef';
+
 import SpecialWeek from '../SpecialWeek/SpecialWeek';
 const Chef=lazy(()=>import('../Chef/Chef'))
+// lazy loader added in the main part
 const Home = () => {
   return (
     <div>
